@@ -157,7 +157,7 @@ export abstract class WindowBase<T = any, U = any> extends GComponent implements
      * 获取窗口顶部资源栏数据 默认返回空数组
      * @returns {HeaderInfo}
      */
-    public abstract getHeaderInfo<U>(): HeaderInfo<U>;
+    public abstract getHeaderInfo(): HeaderInfo<any>;
 
     /** 
      * 刷新顶部资源栏 

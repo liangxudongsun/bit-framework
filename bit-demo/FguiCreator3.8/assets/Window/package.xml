@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="nu4s9n4y">
+  <resources>
+    <component id="sf8l0" name="CloseAllWindow.xml" path="/" exported="true"/>
+    <component id="sf8l1" name="CloseOneWindow.xml" path="/" exported="true"/>
+    <component id="sf8l2" name="HideAllWindow.xml" path="/" exported="true"/>
+    <component id="sf8l3" name="HideOneWindow.xml" path="/" exported="true"/>
+    <image id="sf8l5" name="Icon-60@2x.png" path="/image/"/>
+    <component id="sf8l6" name="HeaderWindow1.xml" path="/" exported="true"/>
+    <component id="sf8l7" name="HeaderWindow2.xml" path="/" exported="true"/>
+    <component id="sf8l8" name="UIBaseWindow.xml" path="/" exported="true"/>
+    <component id="j2i4z" name="NormalWindow1.xml" path="/" exported="true"/>
+    <component id="j2i410" name="NormalWindow2.xml" path="/" exported="true"/>
+    <component id="kpga11" name="CustomButtonList.xml" path="/item/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

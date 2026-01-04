@@ -16,5 +16,5 @@ packages:
   - 'bit-minigame'
   - 'bit-hotupdate'
   # 演示项目
-  - 'demo'
+  - 'bit-demo'
 

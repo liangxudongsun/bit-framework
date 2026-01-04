@@ -33,7 +33,7 @@ export interface IHeader<T = any> {
      * @param userdata 用户数据
      * @internal
      */
-    _show(userdata?: T): void;
+    _show(userdata: T): void;
 
     /**
      * 隐藏

@@ -34,7 +34,7 @@ export abstract class Window<T = any, U = any> extends WindowBase<T, U> {
      * 获取窗口顶部资源栏数据 默认返回空数组
      * @returns {HeaderInfo}
      */
-    public getHeaderInfo<U>(): HeaderInfo<U> {
+    public getHeaderInfo(): HeaderInfo<any> {
         return null;
     }
 }

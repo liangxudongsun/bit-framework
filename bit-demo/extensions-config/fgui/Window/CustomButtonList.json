@@ -1,0 +1,48 @@
+{
+    "props": {},
+    "callbacks": {
+        "onCloseOne": {
+            "name": "btn_closeone",
+            "idPath": "n2_kpga",
+            "namePath": "btn_closeone"
+        },
+        "onCloseAll": {
+            "name": "btn_closeall",
+            "idPath": "n3_kpga",
+            "namePath": "btn_closeall"
+        },
+        "onNormalWindow1": {
+            "name": "btn_normal1",
+            "idPath": "n4_kpga",
+            "namePath": "btn_normal1"
+        },
+        "onNormalWindow2": {
+            "name": "btn_normal2",
+            "idPath": "n5_kpga",
+            "namePath": "btn_normal2"
+        },
+        "onHideOneWindow": {
+            "name": "btn_hideone",
+            "idPath": "n0_kpga",
+            "namePath": "btn_hideone"
+        },
+        "onHideAllWindow": {
+            "name": "btn_hideall",
+            "idPath": "n1_kpga",
+            "namePath": "btn_hideall"
+        },
+        "onHeaderWindow1": {
+            "name": "btn_header1",
+            "idPath": "n6_kpga",
+            "namePath": "btn_header1"
+        },
+        "onHeaderWindow2": {
+            "name": "btn_header2",
+            "idPath": "n7_kpga",
+            "namePath": "btn_header2"
+        }
+    },
+    "controls": {},
+    "transitions": {},
+    "__version__": "0.0.1"
+}

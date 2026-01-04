@@ -51,6 +51,21 @@ importers:
 
   bit-core: {}
 
+  bit-demo:
+    dependencies:
+      '@gongxh/bit-core':
+        specifier: file:../bit-core
+        version: link:../bit-core
+      '@gongxh/bit-ui':
+        specifier: file:../bit-ui
+        version: file:bit-ui
+      fairygui-cc:
+        specifier: ^1.2.2
+        version: 1.2.2
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@types/node@22.19.3)(typescript@5.9.3)
+
   bit-ec:
     dependencies:
       '@gongxh/bit-event':
@@ -88,21 +103,6 @@ importers:
       fairygui-cc:
         specifier: ^1.2.2
         version: 1.2.2
-
-  demo:
-    dependencies:
-      '@gongxh/bit-core':
-        specifier: file:../bit-core
-        version: link:../bit-core
-      '@gongxh/bit-ui':
-        specifier: file:../bit-ui
-        version: file:bit-ui
-      fairygui-cc:
-        specifier: ^1.2.2
-        version: 1.2.2
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@types/node@22.19.3)(typescript@5.9.3)
 
 packages:
 

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n1_gc0p" name="n1" xy="0,0" size="750,145" type="rect" lineSize="3" lineColor="#ff00ff00" fillColor="#ff006699" corner="15">
+      <relation target="" sidePair="width-width,top-top"/>
+    </graph>
+    <text id="n2_gc0p" name="n2" xy="40,48" size="157,44" fontSize="32" color="#ffffff" align="center" vAlign="middle" bold="true" text="金币: 100">
+      <relation target="n1_gc0p" sidePair="middle-middle,left-left"/>
+    </text>
+    <text id="n3_gc0p" name="n3" xy="300,48" size="180,44" fontSize="32" color="#ffffff" align="center" vAlign="middle" bold="true" text="钻石: 1000">
+      <relation target="n1_gc0p" sidePair="middle-middle,left-left"/>
+    </text>
+  </displayList>
+</component>

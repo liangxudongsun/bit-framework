@@ -283,7 +283,7 @@ export class HeaderManager {
      */
     private static isWindowAbove(windowA: string, windowB: string): boolean {
         if (windowA === windowB) {
-            return false;
+            return true;
         }
         const infoA = InfoPool.get(windowA);
         const infoB = InfoPool.get(windowB);

@@ -252,6 +252,12 @@ export class InfoPool {
             this.onInit && this.onInit();
         };
         ctor.prototype.onConstruct = onConstruct;
+
+        const oldDispose = ctor.prototype.dispose;
+        ctor.prototype.dispose = function (this: any): void {
+            this.onClose && this.onClose();
+            oldDispose.call(this);
+        };
         // 自定义组件扩展
         UIObjectFactory.setExtension(`ui://${pkg}/${name}`, ctor);
     }

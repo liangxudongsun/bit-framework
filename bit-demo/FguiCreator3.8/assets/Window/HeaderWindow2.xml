@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="750,1334">
+  <displayList>
+    <graph id="n0_73ie" name="n0" xy="25,265" size="700,804" type="rect" lineSize="5" lineColor="#ff000099" fillColor="#ff0066cc" corner="20">
+      <relation target="" sidePair="width-width,height-height,center-center,middle-middle"/>
+    </graph>
+    <component id="n2_fnoh" name="btn_close" src="ukhni" fileName="btns/btn_close.xml" pkg="mkwn34a7" xy="631,248">
+      <relation target="n0_73ie" sidePair="right-right,top-top"/>
+    </component>
+    <text id="n3_y4bv" name="n3" xy="160,275" size="430,79" font="Hiragino Sans GB" fontSize="60" color="#ffffff" align="center" vAlign="middle" text="带header2弹窗">
+      <relation target="n0_73ie" sidePair="center-center,top-top"/>
+    </text>
+    <component id="n4_y4bv" name="n4" src="kpga11" fileName="item/CustomButtonList.xml" xy="75,413" size="600,600">
+      <relation target="n0_73ie" sidePair="center-center,middle-middle"/>
+    </component>
+  </displayList>
+</component>

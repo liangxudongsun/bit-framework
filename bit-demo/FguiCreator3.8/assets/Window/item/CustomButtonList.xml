@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<component size="600,800">
+  <displayList>
+    <component id="n0_kpga" name="btn_hideone" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="50,27" size="200,73">
+      <relation target="" sidePair="center-center,top-top"/>
+      <Button title="隐藏前一个" titleFontSize="26"/>
+    </component>
+    <component id="n1_kpga" name="btn_hideall" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="325,27" size="200,73">
+      <relation target="" sidePair="center-center,top-top"/>
+      <Button title="隐藏所有" titleFontSize="26"/>
+    </component>
+    <component id="n2_kpga" name="btn_closeone" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="50,150" size="200,73">
+      <relation target="" sidePair="center-center,top-top"/>
+      <Button title="关闭前一个" titleFontSize="26"/>
+    </component>
+    <component id="n3_kpga" name="btn_closeall" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="325,150" size="200,73">
+      <relation target="" sidePair="center-center,top-top"/>
+      <Button title="关闭所有" titleFontSize="26"/>
+    </component>
+    <component id="n4_kpga" name="btn_normal1" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="50,273" size="200,73">
+      <relation target="" sidePair="left-left,top-top"/>
+      <Button title="正常窗口1" titleFontSize="26"/>
+    </component>
+    <component id="n5_kpga" name="btn_normal2" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="325,273" size="200,73">
+      <relation target="" sidePair="center-center,top-top"/>
+      <Button title="正常窗口2" titleFontSize="26"/>
+    </component>
+    <component id="n6_kpga" name="btn_header1" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="50,396" size="200,73">
+      <relation target="" sidePair="left-left,top-top"/>
+      <Button title="header1" titleFontSize="26"/>
+    </component>
+    <component id="n7_kpga" name="btn_header2" src="kofe0" fileName="btns/button1.xml" pkg="mkwn34a7" xy="325,396" size="200,73">
+      <relation target="" sidePair="center-center,top-top"/>
+      <Button title="header2" titleFontSize="26"/>
+    </component>
+  </displayList>
+</component>

@@ -72,7 +72,7 @@ export abstract class Header<T = any> extends GComponent implements IHeader<T> {
      * @param userdata 用户数据
      * @internal
      */
-    public _show(userdata?: T): void {
+    public _show(userdata: T): void {
         this.visible = true;
         this.onShow(userdata);
     }

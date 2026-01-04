@@ -86,7 +86,7 @@ export interface IWindow<TUserData = any, THeaderData = any> {
     setDepth(depth: number): void;
 
     /** 获取资源栏数据 */
-    getHeaderInfo<THeaderData>(): HeaderInfo<THeaderData>;
+    getHeaderInfo(): HeaderInfo<any>;
 
     /** 刷新资源栏 */
     refreshHeader(): void;

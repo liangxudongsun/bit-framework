@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "pnpm -r --parallel clean",
 
-    "build": "pnpm -r --filter='!kunpocreator' build",
+    "build": "pnpm -r --filter='!bit-creator' build",
     "build:core": "pnpm --filter @gongxh/bit-core build",
     "build:ui": "pnpm --filter @gongxh/bit-ui build",
     "build:ecs": "pnpm --filter @gongxh/bit-ecs build",
