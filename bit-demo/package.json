@@ -7,6 +7,9 @@
   "dependencies": {
     "@gongxh/bit-core": "file:../bit-core",
     "@gongxh/bit-ui": "file:../bit-ui",
+    "@gongxh/bit-ecs": "file:../bit-ecs",
+    "@gongxh/bit-quadtree": "file:../bit-quadtree",
+    "@gongxh/bit-assets": "file:../bit-assets",
     "fairygui-cc": "^1.2.2",
     "ts-node": "^10.9.2"
   }

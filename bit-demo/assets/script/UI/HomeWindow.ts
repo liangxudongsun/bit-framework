@@ -4,23 +4,12 @@
  * @Description: 
  */
 
-import { Core, fgui, UI } from "../header";
+import { Core, UI } from "../header";
 import { UIBaseWindow } from "./Window/UIBaseWindow";
 const { uiclass, uiprop, uiclick, uicontrol, uitransition } = UI._uidecorator;
 
 @uiclass("Window", "Home", "HomeWindow")
 export class HomeWindow extends UI.Window {
-    @uicontrol private status: fgui.Controller;
-    @uicontrol private sta2: fgui.Controller;
-
-    @uicontrol private bookCtrl: fgui.Controller;
-    @uicontrol private doneCtrl: fgui.Controller;
-    @uicontrol private resultCtrl: fgui.Controller;
-
-
-    @uitransition private t0: fgui.Transition;
-    @uitransition private t1: fgui.Transition;
-
     protected onInit(): void {
         this.adapterType = UI.AdapterType.Bang;
         this.type = UI.WindowType.CloseAll;
@@ -55,8 +44,11 @@ export class HomeWindow extends UI.Window {
     }
 
 
+    /**
+     * 进入ecs系统的界面
+     */
     @uiclick
-    private onClickMiniGame(): void {
+    private onECS(): void {
         Core.log("444");
     }
 

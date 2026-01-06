@@ -15,9 +15,18 @@ export class GameEntry extends Core.CocosEntry {
         }
         Core.Platform.deviceId = deviceId;
         Debug.Register();
+
         fgui.UIPackage.loadPackage("ui/manual/Basics", () => {
-            this.intoGame();
+            this.onResourceLoadComplete();
         });
+    }
+
+    /** 资源加载完成 */
+    private onResourceLoadComplete(): void {
+        // 1.5秒后打开 HomeWindow 窗口
+        Core.GlobalTimer.startTimer(() => {
+            this.intoGame();
+        }, 1.5, 0);
     }
 
     private intoGame(): void {

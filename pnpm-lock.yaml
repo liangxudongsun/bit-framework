@@ -56,6 +56,9 @@ importers:
       '@gongxh/bit-core':
         specifier: file:../bit-core
         version: link:../bit-core
+      '@gongxh/bit-ecs':
+        specifier: file:../bit-ecs
+        version: link:../bit-ecs
       '@gongxh/bit-ui':
         specifier: file:../bit-ui
         version: file:bit-ui
