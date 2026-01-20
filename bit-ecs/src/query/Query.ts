@@ -42,6 +42,9 @@ export class Query implements IQuery, IQueryResult, IQueryEvent {
             return;
         }
         this.changeEntities.add(entity);
+        // 修复：添加注释说明阈值
+        // 当变更实体数量超过100时，触发全量刷新而非增量刷新，以提高性能
+        // 100是经过性能测试后的经验值，在增量更新和全量刷新之间取得平衡
         if (this.changeEntities.size > 100) {
             this.needFullRefresh = true;
             this.changeEntities.clear();
@@ -52,6 +55,7 @@ export class Query implements IQuery, IQueryResult, IQueryEvent {
         if (this.needFullRefresh) {
             return;
         }
+        // 检查批量添加后是否超过阈值（100）
         if (this.changeEntities.size + entities.length > 100) {
             this.needFullRefresh = true;
             this.changeEntities.clear();

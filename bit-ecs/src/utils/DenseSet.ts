@@ -134,7 +134,12 @@ export class DenseSet<T extends IComponent> {
      * @internal
      */
     public get(entity: Entity): T {
-        return this.dense[this.entityToIndex.get(entity)];
+        // 修复：先检查entity是否存在，避免返回undefined索引值
+        const index = this.entityToIndex.get(entity);
+        if (index === undefined) {
+            return undefined;
+        }
+        return this.dense[index];
     }
 
     /**

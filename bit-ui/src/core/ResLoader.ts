@@ -20,6 +20,9 @@ export class ResLoader {
     /** 包的引用计数 包名 -> 引用计数 */
     private static pkgRefs: Map<string, number> = new Map();
 
+    /** 包的加载状态 包名 -> 加载中的Promise，用于防止并发加载 */
+    private static loadingPromises: Map<string, Promise<void>> = new Map();
+
     /** 
      * 自动释放UI资源
      * @internal
@@ -69,7 +72,9 @@ export class ResLoader {
      * @internal
      */
     private static decWaitRef(): void {
-        if (--this.waitRef === 0) {
+        // 修复：防止waitRef变为负数
+        this.waitRef = Math.max(0, this.waitRef - 1);
+        if (this.waitRef === 0) {
             this._hideWaitWindow?.();
         }
     }
@@ -124,6 +129,21 @@ export class ResLoader {
      * @internal
      */
     private static async loadUIPackages(packages: string[], windowName: string): Promise<void> {
+        // 修复：防止并发加载相同的包
+        // 检查是否有包正在加载，如果有则等待其完成
+        const waitPromises: Promise<void>[] = [];
+        for (const pkg of packages) {
+            const loadingPromise = this.loadingPromises.get(pkg);
+            if (loadingPromise) {
+                waitPromises.push(loadingPromise);
+            }
+        }
+
+        // 等待所有正在加载的包完成
+        if (waitPromises.length > 0) {
+            await Promise.all(waitPromises);
+        }
+
         // 先找出来所有需要加载的包名
         let list = packages.filter(pkg => this.getRef(pkg) <= 0);
         if (list.length <= 0) {
@@ -131,39 +151,51 @@ export class ResLoader {
             packages.forEach(pkg => this.addRef(pkg));
             return;
         }
+
         // 一定有需要加载的资源
         this.addWaitRef();
 
         // 记录成功加载的包，用于失败时回滚
         const loadedPackages: string[] = [];
 
-        try {
-            // 获取包对应的bundle名
-            let bundleNames = list.map(pkg => InfoPool.getBundleName(pkg));
-            // 加载bundle
-            await this.loadBundles(bundleNames, windowName);
+        // 创建加载Promise并记录
+        const loadPromise = (async () => {
+            try {
+                // 获取包对应的bundle名
+                let bundleNames = list.map(pkg => InfoPool.getBundleName(pkg));
+                // 加载bundle
+                await this.loadBundles(bundleNames, windowName);
 
-            // 顺序加载每个UI包，每加载成功一个就记录
-            for (const pkg of list) {
-                await this.loadSingleUIPackage(pkg, windowName);
-                loadedPackages.push(pkg);
+                // 顺序加载每个UI包，每加载成功一个就记录
+                for (const pkg of list) {
+                    await this.loadSingleUIPackage(pkg, windowName);
+                    loadedPackages.push(pkg);
+                }
+
+                // 所有包加载成功后，减少等待窗引用计数
+                this.decWaitRef();
+                // 增加包资源的引用计数
+                packages.forEach(pkg => this.addRef(pkg));
+            } catch (err) {
+                // 减少等待窗的引用计数
+                this.decWaitRef();
+
+                // 回滚：卸载已经加载成功的包
+                loadedPackages.forEach(pkg => {
+                    UIPackage.removePackage(pkg);
+                });
+
+                throw err;
+            } finally {
+                // 清理加载状态
+                list.forEach(pkg => this.loadingPromises.delete(pkg));
             }
+        })();
 
-            // 所有包加载成功后，减少等待窗引用计数
-            this.decWaitRef();
-            // 增加包资源的引用计数
-            packages.forEach(pkg => this.addRef(pkg));
-        } catch (err) {
-            // 减少等待窗的引用计数
-            this.decWaitRef();
+        // 记录正在加载的包
+        list.forEach(pkg => this.loadingPromises.set(pkg, loadPromise));
 
-            // 回滚：卸载已经加载成功的包
-            loadedPackages.forEach(pkg => {
-                UIPackage.removePackage(pkg);
-            });
-
-            throw err;
-        }
+        await loadPromise;
     }
 
     /**

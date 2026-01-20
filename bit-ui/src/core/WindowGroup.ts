@@ -243,7 +243,8 @@ export class WindowGroup {
         // 最后一个是新显示上来的窗口
         if (window.type === WindowType.CloseOne) {
             // 关闭上一个窗口（倒数第二个，因为最后一个是当前窗口）
-            if (this.size <= 1) {
+            // 修复：明确检查边界，避免数组越界
+            if (this.size < 2) {
                 return;
             }
             const name = this._windowNames[this.size - 2];
@@ -259,17 +260,23 @@ export class WindowGroup {
             WindowManager.removeWindow(name);
         } else if (window.type === WindowType.CloseAll) {
             // 关闭所有窗口 从后向前依次删除
+            // 修复：添加异常保护，避免清理异常导致数据不一致
             for (let i = this.size - 2; i >= 0; i--) {
                 const name = this._windowNames[i];
                 const win = WindowManager.getWindow(name);
                 if (!win) {
                     console.error(`[BUG] 窗口【${name}】不存在，数据结构已损坏`);
-                    return;
+                    continue; // 继续处理其他窗口，而不是直接返回
                 }
-                // 释放header
-                HeaderManager.releaseHeader(name);
-                win._close();
-                WindowManager.removeWindow(name);
+                try {
+                    // 释放header
+                    HeaderManager.releaseHeader(name);
+                    win._close();
+                    WindowManager.removeWindow(name);
+                } catch (err) {
+                    console.error(`关闭窗口【${name}】时发生异常:`, err);
+                    // 即使出错也继续处理其他窗口
+                }
             }
             // 清理数组，只保留最后一个（当前窗口）
             this._windowNames.splice(0, this.size - 1);

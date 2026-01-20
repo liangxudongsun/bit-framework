@@ -93,7 +93,8 @@ export class CommandPool {
         this.delCommands.forEach((command: CommandDel, componentType: number) => {
             let entities = command.getEntities();
             let queries = this.componentTypeQuerys.get(componentType);
-            let len = queries ? queries.length : 0;
+            // 修复：使用可选链和空值合并，确保queries存在
+            let len = queries?.length || 0;
             for (let i = 0; i < len; i++) {
                 queries[i].batchChangeEntities(entities);
             }
@@ -108,7 +109,8 @@ export class CommandPool {
         this.addCommands.forEach((command: CommandAdd, componentType: number) => {
             let entities = command.getEntities();
             let queries = this.componentTypeQuerys.get(componentType);
-            let len = queries ? queries.length : 0;
+            // 修复：使用可选链和空值合并，确保queries存在
+            let len = queries?.length || 0;
             for (let i = 0; i < len; i++) {
                 queries[i].batchChangeEntities(entities);
             }

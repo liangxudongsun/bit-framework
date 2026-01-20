@@ -71,6 +71,10 @@ export class RecyclePool<T> {
             capacity = capacity >= 512 ? capacity + 256 : capacity * 2;
             this.pool.length = Math.min(capacity, this.max);
             // console.log(`回收池【${this.name}】容量扩容: ${capacity}`);
+        } else if (this._count === capacity && capacity >= this.max) {
+            // 修复：池已达到最大容量且已满时，添加警告日志
+            console.warn(`回收池【${this.name}】已达到最大容量(${this.max})，无法继续回收对象`);
+            return;
         }
         this.reset(obj);
         this.pool[this._count++] = obj;

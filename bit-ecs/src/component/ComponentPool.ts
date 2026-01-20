@@ -34,6 +34,11 @@ export class ComponentPool {
      * @internal
      */
     public createComponent<T extends IComponent>(componentType: number): T {
+        // 修复：添加边界检查
+        if (componentType < 0 || componentType >= this.pools.length || !this.pools[componentType]) {
+            console.error(`无效的组件类型: ${componentType}`);
+            return null;
+        }
         return this.pools[componentType].create() as T;
     }
 
@@ -45,6 +50,11 @@ export class ComponentPool {
      * @internal
      */
     public addComponent<T extends IComponent>(entity: Entity, componentType: number, component: T): void {
+        // 修复：添加边界检查
+        if (componentType < 0 || componentType >= this.pools.length || !this.pools[componentType]) {
+            console.error(`无效的组件类型: ${componentType}`);
+            return;
+        }
         // 获取对应组件池并添加组件
         this.pools[componentType].add(entity, component);
     }
@@ -57,6 +67,10 @@ export class ComponentPool {
      * @internal
      */
     public getComponent<T extends IComponent>(entity: Entity, componentType: number): T | undefined {
+        // 修复：添加边界检查
+        if (componentType < 0 || componentType >= this.pools.length || !this.pools[componentType]) {
+            return undefined;
+        }
         return this.pools[componentType].get(entity) as T;
     }
 
@@ -79,16 +93,30 @@ export class ComponentPool {
      * @internal
      */
     public removeComponent(entity: Entity, componentType: number): void {
+        // 修复：添加边界检查
+        if (componentType < 0 || componentType >= this.pools.length || !this.pools[componentType]) {
+            console.error(`无效的组件类型: ${componentType}`);
+            return;
+        }
         this.pools[componentType].remove(entity);
     }
 
     // 获取拥有特定组件的实体数量
     public getEntityCount(componentType: number): number {
+        // 修复：添加边界检查
+        if (componentType < 0 || componentType >= this.pools.length || !this.pools[componentType]) {
+            return 0;
+        }
         return this.pools[componentType].size;
     }
 
     /** 获取对应的组件池 */
     public getPool(componentType: number): DenseSet<IComponent> {
+        // 修复：添加边界检查
+        if (componentType < 0 || componentType >= this.pools.length || !this.pools[componentType]) {
+            console.error(`无效的组件类型: ${componentType}`);
+            return null;
+        }
         return this.pools[componentType];
     }
 

@@ -139,7 +139,14 @@ export class Timer {
                 heap.update(timerNode);
             }
 
-            callback();
+            // 执行回调，捕获异常防止中断后续定时器
+            if (callback) {
+                try {
+                    callback();
+                } catch (error) {
+                    console.error("Timer callback error:", error);
+                }
+            }
             timerNode = heap.top();
         }
     }

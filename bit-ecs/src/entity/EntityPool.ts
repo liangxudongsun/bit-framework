@@ -125,7 +125,12 @@ export class EntityPool {
         }
         this._componentPool.removeComponent(entity, componentType);
         // 删除组件
+        // 修复：添加mask的null检查
         let mask = this.entityMasks.get(entity);
+        if (!mask) {
+            console.error(`entity[${entity}]的mask不存在，数据结构已损坏`);
+            return;
+        }
         mask.delete(componentType);
         if (mask.isEmpty()) {
             this._size--;

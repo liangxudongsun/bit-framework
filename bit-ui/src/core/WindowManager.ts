@@ -309,7 +309,7 @@ export class WindowManager {
             for (let j = group.windowNames.length - 1; j >= 0; j--) {
                 const name = group.windowNames[j];
                 const win = WindowManager.getWindow<WindowBase>(name);
-                if (win.bgAlpha > 0) {
+                if (win && win.bgAlpha > 0) {
                     topWindow = win;
                     break;
                 }
@@ -319,7 +319,7 @@ export class WindowManager {
             }
         }
         // 如果找到了需要遮罩的窗口
-        if (topWindow) {
+        if (topWindow && topWindow.parent) {
             // 获取窗口组的根节点
             const parent = topWindow.parent;
             // 将遮罩设置到目标窗口的下方

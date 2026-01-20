@@ -59,9 +59,12 @@ export class HeaderManager {
             this._headerWindowsMap.set(headerName, new Set());
         }
         // 增加引用计数
-        this._refCounts.set(headerName, this._refCounts.get(headerName) + 1);
+        this._refCounts.set(headerName, (this._refCounts.get(headerName) || 0) + 1);
         // 记录窗口和header的关系
-        this._headerWindowsMap.get(headerName).add(windowName);
+        const windowsSet = this._headerWindowsMap.get(headerName);
+        if (windowsSet) {
+            windowsSet.add(windowName);
+        }
     }
 
     /**
@@ -119,10 +122,13 @@ export class HeaderManager {
         }
         const headerName = this.getHeaderName(windowName);
         // 减少引用计数
-        const refCount = this._refCounts.get(headerName) - 1;
+        const refCount = (this._refCounts.get(headerName) || 1) - 1;
 
         // 移除映射关系
-        this._headerWindowsMap.get(headerName).delete(windowName);
+        const windowsSet = this._headerWindowsMap.get(headerName);
+        if (windowsSet) {
+            windowsSet.delete(windowName);
+        }
 
         // 清除窗口的header信息
         this._headerInfos.delete(windowName);
