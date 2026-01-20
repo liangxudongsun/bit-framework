@@ -124,19 +124,18 @@ export class Timer {
                 heap.pop();
                 this._recycle(timerNode);
             } else if (timerNode.loop > 0) {
-                // 处理多次回调定时器
-                if (--timerNode.loop == 0) {
+                const missedCount = Math.floor((elapsedTime - timerNode.expireTime) / timerNode.interval) + 1;
+                timerNode.loop -= missedCount;
+                if (timerNode.loop <= 0) {
                     heap.pop();
                     this._recycle(timerNode);
                 } else {
-                    // 更新下一次回调
-                    timerNode.expireTime = timerNode.expireTime + timerNode.interval;
+                    timerNode.expireTime += timerNode.interval * missedCount;
                     heap.update(timerNode);
                 }
             } else {
-                // 无限次数回调
-                // 更新下一次回调
-                timerNode.expireTime = timerNode.expireTime + timerNode.interval;
+                const missedCount = Math.floor((elapsedTime - timerNode.expireTime) / timerNode.interval) + 1;
+                timerNode.expireTime += timerNode.interval * missedCount;
                 heap.update(timerNode);
             }
 

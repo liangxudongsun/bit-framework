@@ -192,9 +192,15 @@ export class Time {
      * @returns 时间戳 (ms)
      */
     public static getWeekStartTime(timestamp?: number): number {
-        return this.getDayStartTime(timestamp - this.getWeekDay(timestamp) * 86400000);
+        const ts = timestamp || this.now();
+        // getWeekDay 返回 1-7 (周一到周日)，需要减去 (weekDay - 1) 天得到周一
+        return this.getDayStartTime(ts - (this.getWeekDay(ts) - 1) * 86400000);
     }
 
+    /**
+     * @param timestamp 时间戳 (ms)
+     * @returns 时间戳 (ms)
+     */
     public static getWeekEndTime(timestamp?: number): number {
         return this.getWeekStartTime(timestamp) + 86400000 * 7;
     }

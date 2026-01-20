@@ -262,7 +262,7 @@ export class DoublyLinkedList<T> extends LinkedList<T> {
             current.prev = undefined;
             return current.element;
         }
-        return null;
+        return undefined;
     }
 
     /**

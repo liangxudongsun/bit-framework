@@ -94,18 +94,18 @@ export class TimerNodePool {
         const version = timerId & TimerVersionMask;
 
         if (index < 0 || index >= this._pool.length) {
-            return null;
+            return undefined;
         }
 
         const timerNode = this._pool[index];
         if (timerNode.recycled) {
-            return null;
+            return undefined;
         }
 
         const timerNodeVersion = timerNode.id & TimerVersionMask;
 
         if (timerNodeVersion != version) {
-            return null;
+            return undefined;
         }
 
         return timerNode;

@@ -23,8 +23,16 @@ export class InnerTimer {
      * @param loop - [loop=0] 重复次数：0：回调一次，1~n：回调n次，-1：无限重复
      * @returns 返回定时器的ID。
      */
+    private static get Timer(): Timer {
+        if (this._timer) {
+            return this._timer;
+        }
+        this.initTimer();
+        return this._timer;
+    }
+
     public static startTimer(callback: () => void, interval: number, loop: number = 0): number {
-        return this._timer.start(callback, interval, loop);
+        return this.Timer.start(callback, interval, loop);
     }
 
     /**
@@ -32,7 +40,7 @@ export class InnerTimer {
      * @param timerId - 要停止的计时器的唯一标识符。
      */
     public static stopTimer(timerId: number): void {
-        this._timer.stop(timerId);
+        this.Timer.stop(timerId);
     }
 
     public static update(dt: number): void {
