@@ -29,11 +29,11 @@ export class Time {
      */
     private static _netTimeDiff: number = 0;
 
-    /** 
+    /**
      * 获取当前毫秒时间戳
      * @internal
      */
-    private static _nowTimestamp: () => number;
+    private static _nowTimestamp: () => number = () => Date.now();
 
     /** 获取游戏系统启动时间戳 */
     public static get osBootTime(): number { return this._osBootTime; }

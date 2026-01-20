@@ -134,13 +134,21 @@ export class ResLoader {
         // 一定有需要加载的资源
         this.addWaitRef();
 
+        // 记录成功加载的包，用于失败时回滚
+        const loadedPackages: string[] = [];
+
         try {
             // 获取包对应的bundle名
             let bundleNames = list.map(pkg => InfoPool.getBundleName(pkg));
             // 加载bundle
             await this.loadBundles(bundleNames, windowName);
-            // 顺序加载每个UI包
-            await this.loadUIPackagesSequentially(list, windowName);
+
+            // 顺序加载每个UI包，每加载成功一个就记录
+            for (const pkg of list) {
+                await this.loadSingleUIPackage(pkg, windowName);
+                loadedPackages.push(pkg);
+            }
+
             // 所有包加载成功后，减少等待窗引用计数
             this.decWaitRef();
             // 增加包资源的引用计数
@@ -148,6 +156,12 @@ export class ResLoader {
         } catch (err) {
             // 减少等待窗的引用计数
             this.decWaitRef();
+
+            // 回滚：卸载已经加载成功的包
+            loadedPackages.forEach(pkg => {
+                UIPackage.removePackage(pkg);
+            });
+
             throw err;
         }
     }
@@ -179,19 +193,6 @@ export class ResLoader {
                     }
                 });
             });
-        }
-    }
-
-    /**
-     * 顺序加载多个 UI 包
-     * @param packages 包名列表
-     * @param windowName 窗口名（用于失败回调）
-     * @internal
-     */
-    private static async loadUIPackagesSequentially(packages: string[], windowName?: string): Promise<void> {
-        // 顺序加载每个UI包
-        for (const pkg of packages) {
-            await this.loadSingleUIPackage(pkg, windowName);
         }
     }
 

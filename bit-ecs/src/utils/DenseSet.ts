@@ -104,6 +104,11 @@ export class DenseSet<T extends IComponent> {
      * @internal
      */
     public remove(entity: Entity): void {
+        // 检查实体是否存在
+        if (!this.entityToIndex.has(entity)) {
+            return;
+        }
+
         const index = this.entityToIndex.get(entity);
         const lastIndex = this._size - 1;
         // 如果不是最后一个元素，用最后一个元素替换被删除的元素
