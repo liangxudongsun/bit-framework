@@ -256,6 +256,11 @@
             "name": "btn_data",
             "idPath": "n23_rrvv",
             "namePath": "btn_data"
+        },
+        "onECS": {
+            "name": "btn_ecs",
+            "idPath": "n21_bz1o",
+            "namePath": "btn_ecs"
         }
     },
     "controls": {

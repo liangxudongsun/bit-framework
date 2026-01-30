@@ -30,7 +30,7 @@ export class HomeWindow extends UI.Window {
 
     @uiclick
     private onClickUI(): void {
-        UI.WindowManager.showWindow(UIBaseWindow, { name: "UI界面" });
+        UI.WindowManager.showWindow(UIBaseWindow, { name: 'UI界面' });
     }
 
     @uiclick

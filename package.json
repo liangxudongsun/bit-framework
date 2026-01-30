@@ -20,7 +20,9 @@
     "build:minigame": "pnpm --filter @gongxh/bit-minigame build",
     "build:hotupdate": "pnpm --filter @gongxh/bit-hotupdate build",
 
-    "build:all": "pnpm build:core && pnpm build:ui && pnpm build:ecs && pnpm build:event && pnpm build:net && pnpm build:quadtree && pnpm build:assets && pnpm build:behaviortree && pnpm build:ec && pnpm build:condition && pnpm build:minigame && pnpm build:hotupdate",
+    "build:all": "pnpm build:core && pnpm build:ui && pnpm build:ecs && pnpm build:event && pnpm build:net && pnpm build:quadtree && pnpm build:assets && pnpm build:behaviortree && pnpm build:ec && pnpm build:condition && pnpm build:minigame && pnpm build:hotupdate && pnpm copy:dts",
+
+    "copy:dts": "cp bit-core/dist/bit-core.d.ts bit-ui/dist/bit-ui.d.ts bit-ecs/dist/bit-ecs.d.ts bit-event/dist/bit-event.d.ts bit-net/dist/bit-net.d.ts bit-quadtree/dist/bit-quadtree.d.ts bit-assets/dist/bit-assets.d.ts bit-behaviortree/dist/bit-behaviortree.d.ts bit-ec/dist/bit-ec.d.ts bit-condition/dist/bit-condition.d.ts bit-minigame/dist/bit-minigame.d.ts bit-hotupdate/dist/bit-hotupdate.d.ts /Users/gongxh/work/kunpo-lib/bit-framework-mcp/dts/framework/",
 
     "dev:core": "pnpm --filter @gongxh/bit-core build --watch",
     "dev:ui": "pnpm --filter @gongxh/bit-ui build --watch",

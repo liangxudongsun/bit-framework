@@ -1069,7 +1069,7 @@
     "_enabled": true,
     "__prefab": null,
     "ignoreQuery": false,
-    "swallowTouch": true,
+    "swallowTouch": false,
     "_id": "563mkF1ypLX7sC5iJaacvJ"
   },
   {
@@ -1127,7 +1127,7 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "ignoreQuery": true,
+    "ignoreQuery": false,
     "swallowTouch": false,
     "_id": "8esjOPtvxOoae45nWAx2v4"
   },
@@ -1186,8 +1186,8 @@
     },
     "_enabled": true,
     "__prefab": null,
-    "ignoreQuery": true,
-    "swallowTouch": true,
+    "ignoreQuery": false,
+    "swallowTouch": false,
     "_id": "50qi/ehLlPG5oiVdlzl7So"
   },
   {
@@ -1223,7 +1223,7 @@
     "root": {
       "__id__": 6
     },
-    "_id": "4dPt98muFPo7hLJwjnjK9U"
+    "_id": "8cJIeJ9KdEh5Y1PEMEBOka"
   },
   {
     "__type__": "cc.PrefabInfo",

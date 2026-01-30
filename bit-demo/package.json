@@ -2,14 +2,14 @@
   "name": "bit-creator",
   "uuid": "f5d24040-9cd4-4a5a-8559-38bf55e621f7",
   "creator": {
-    "version": "3.8.6"
+    "version": "3.8.8"
   },
   "dependencies": {
-    "@gongxh/bit-core": "file:../bit-core",
-    "@gongxh/bit-ui": "file:../bit-ui",
-    "@gongxh/bit-ecs": "file:../bit-ecs",
-    "@gongxh/bit-quadtree": "file:../bit-quadtree",
-    "@gongxh/bit-assets": "file:../bit-assets",
+    "@gongxh/bit-core": "^0.0.8",
+    "@gongxh/bit-ui": "^0.0.8",
+    "@gongxh/bit-ecs": "^0.0.8",
+    "@gongxh/bit-quadtree": "^0.0.8",
+    "@gongxh/bit-assets": "^0.0.8",
     "fairygui-cc": "^1.2.2",
     "ts-node": "^10.9.2"
   }
