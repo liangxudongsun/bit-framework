@@ -1,7 +1,7 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-12-29
- * @Description: 
+ * @Description:
  */
 import { UI } from "../../header";
 const { uiclass, uiclick } = UI._uidecorator;
@@ -13,7 +13,7 @@ export class HideAllWindow extends UI.Window {
         this.type = UI.WindowType.HideAll;
     }
 
-    protected onShow(userdata?: any): void {
+    protected onShow(_userdata?: unknown): void {
 
     }
 

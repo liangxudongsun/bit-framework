@@ -1,10 +1,10 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-12-30
- * @Description: 
+ * @Description:
  */
 import { UI } from "../../header";
-const { uiclass, uiclick } = UI._uidecorator;
+const { uiclass } = UI._uidecorator;
 
 @uiclass("Window", "Window", "CloseAllWindow")
 export class CloseAllWindow extends UI.Window {
@@ -13,7 +13,7 @@ export class CloseAllWindow extends UI.Window {
         this.type = UI.WindowType.CloseAll;
     }
 
-    protected onShow(userdata?: any): void {
+    protected onShow(_userdata?: unknown): void {
 
     }
 

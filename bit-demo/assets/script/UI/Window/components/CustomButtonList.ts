@@ -4,7 +4,8 @@
  * @Description: 这是一个自定义组件
  */
 import { log } from "@gongxh/bit-core";
-import { fgui, UI } from "../../../header";
+
+import { FGUI, UI } from "../../../header";
 import { CloseAllWindow } from "../CloseAllWindow";
 import { CloseOneWindow } from "../CloseOneWindow";
 import { HeaderWindow1 } from "../HeaderWindow1";
@@ -13,7 +14,7 @@ import { HideAllWindow } from "../HideAllWindow";
 import { HideOneWindow } from "../HideOneWindow";
 import { NormalWindow1 } from "../NormalWindow1";
 import { NormalWindow2 } from "../NormalWindow2";
-const { uicom, uiclass, uiclick } = UI._uidecorator;
+const { uicom, uiclick } = UI._uidecorator;
 
 /**
  * 自定义组件注册
@@ -21,7 +22,7 @@ const { uicom, uiclass, uiclick } = UI._uidecorator;
  * 参数2：组件的名称
  */
 @uicom("Window", "CustomButtonList")
-export class CustomButtonList extends fgui.GComponent {
+export class CustomButtonList extends FGUI.GComponent {
 
     protected onInit(): void {
 

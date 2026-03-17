@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <component size="750,87">
   <displayList>
-    <image id="n1_e679" name="bg" src="gukgl" fileName="window/toast/image_toastbg.png" xy="2,8" size="746,85">
+    <image id="n1_e679" name="bg" src="gukgl" fileName="window/toast/image_toastbg.png" xy="2,1" size="746,85">
       <relation target="n0_8ej8" sidePair="height-height,center-center,middle-middle"/>
     </image>
     <text id="n0_8ej8" name="labTips" xy="275,22" size="200,42" fontSize="30" color="#ffd953" align="center" vAlign="middle" leading="10" text="toast提示文本">

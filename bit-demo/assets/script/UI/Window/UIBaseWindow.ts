@@ -1,10 +1,10 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-12-27
- * @Description: 
+ * @Description:
  */
-import { Core, UI } from "../../header";
-const { uiclass, uiprop, uiclick, uicontrol, uitransition } = UI._uidecorator;
+import { CORE, UI } from "../../header";
+const { uiclass, uiclick } = UI._uidecorator;
 
 @uiclass("Window", "Window", "UIBaseWindow")
 export class UIBaseWindow extends UI.Window {
@@ -14,12 +14,12 @@ export class UIBaseWindow extends UI.Window {
     }
 
     protected onShow(userdata: { name: string }): void {
-        Core.log("UIBaseWindow onShow:", userdata);
+        CORE.log("UIBaseWindow onShow:", userdata);
 
     }
 
     protected onClose(): void {
-        Core.log("UIBaseWindow onClose");
+        CORE.log("UIBaseWindow onClose");
     }
 
 

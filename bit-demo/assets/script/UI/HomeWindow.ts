@@ -1,12 +1,12 @@
 /**
  * @Author: Gongxh
  * @Date: 2024-12-11
- * @Description: 
+ * @Description:
  */
 
-import { Core, UI } from "../header";
+import { CORE, UI } from "../header";
 import { UIBaseWindow } from "./Window/UIBaseWindow";
-const { uiclass, uiprop, uiclick, uicontrol, uitransition } = UI._uidecorator;
+const { uiclass, uiclick } = UI._uidecorator;
 
 @uiclass("Window", "Home", "HomeWindow")
 export class HomeWindow extends UI.Window {
@@ -15,8 +15,8 @@ export class HomeWindow extends UI.Window {
         this.type = UI.WindowType.CloseAll;
     }
 
-    protected onShow(userdata?: any): void {
-        Core.log("HomeWindow onShow:", userdata);
+    protected onShow(userdata?: unknown): void {
+        CORE.log("HomeWindow onShow:", userdata);
         // console.log("this.status", this.status);
         // console.log("this.sta2", this.sta2);
         // console.log("this.bookCtrl", this.bookCtrl);
@@ -25,22 +25,22 @@ export class HomeWindow extends UI.Window {
     }
 
     protected onClose(): void {
-        Core.log("HomeWindow onClose");
+        CORE.log("HomeWindow onClose");
     }
 
     @uiclick
     private onClickUI(): void {
-        UI.WindowManager.showWindow(UIBaseWindow, { name: 'UI界面' });
+        UI.WindowManager.showWindow(UIBaseWindow, { name: "UI界面" });
     }
 
     @uiclick
     private onSocketWindow(): void {
-        Core.log("222");
+        CORE.log("222");
     }
 
     @uiclick
     private onClickBtnCondition(): void {
-        Core.log("333");
+        CORE.log("333");
     }
 
 
@@ -49,16 +49,16 @@ export class HomeWindow extends UI.Window {
      */
     @uiclick
     private onECS(): void {
-        Core.log("444");
+        CORE.log("444");
     }
 
     @uiclick
     private onClickBtnHotUpdate(): void {
-        Core.log("555");
+        CORE.log("555");
     }
 
     @uiclick
     private onClickData(): void {
-        Core.log("666");
+        CORE.log("666");
     }
 }

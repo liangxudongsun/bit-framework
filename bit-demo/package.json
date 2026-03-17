@@ -4,12 +4,22 @@
   "creator": {
     "version": "3.8.8"
   },
+  "scripts": {
+    "lint": "eslint assets/script",
+    "lint:fix": "eslint assets/script --fix"
+  },
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^5.10.0",
+    "eslint": "^9.39.4",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "typescript-eslint": "^8.57.1"
+  },
   "dependencies": {
+    "@gongxh/bit-assets": "^0.0.8",
     "@gongxh/bit-core": "^0.0.8",
-    "@gongxh/bit-ui": "^0.0.8",
     "@gongxh/bit-ecs": "^0.0.8",
     "@gongxh/bit-quadtree": "^0.0.8",
-    "@gongxh/bit-assets": "^0.0.8",
+    "@gongxh/bit-ui": "^0.0.8",
     "fairygui-cc": "^1.2.2",
     "ts-node": "^10.9.2"
   }

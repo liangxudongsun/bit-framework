@@ -4,13 +4,13 @@
  * @Description: 四叉树
  */
 
-import { ecs, quadtree } from "../../../header";
+import { ecs, QT } from "../../../header";
 
-const { ecsclass, ecsprop } = ecs._ecsdecorator;
+const { ecsclass } = ecs._ecsdecorator;
 
 @ecsclass("QuadTree", { describe: "四叉树组件" })
 export class QuadTree extends ecs.Component {
-    public quadTree: quadtree.QuadTree;
+    public quadTree: QT.QuadTree;
 
     public reset(): void {
         this.quadTree.clear();

@@ -1,16 +1,16 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-05-23
- * @Description: 
+ * @Description:
  */
-import { ecs, quadtree } from "../../../header";
-const { ecsclass, ecsprop } = ecs._ecsdecorator;
+import { ecs, QT } from "../../../header";
+const { ecsclass } = ecs._ecsdecorator;
 
 @ecsclass("QTShape", { describe: "四叉树形状组件" })
 export class QTShape extends ecs.Component {
     public x: number = 0;
     public y: number = 0;
-    public shape: quadtree.IShape;
+    public shape: QT.IShape;
 
     public reset(): void {
         this.x = 0;

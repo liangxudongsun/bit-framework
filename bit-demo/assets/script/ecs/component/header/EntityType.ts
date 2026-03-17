@@ -4,9 +4,9 @@
  * @Description: 实体类型
  */
 
-export enum EntityType {
-    None = 0,
-    Hero = 1,
-    Enemy = 2,
-    Bullet = 3,
+export enum EEntityType {
+    NONE = 0,
+    HERO = 1,
+    ENEMY = 2,
+    BULLET = 3
 }

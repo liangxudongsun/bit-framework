@@ -1,11 +1,11 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-12-29
- * @Description: 
+ * @Description:
  */
 
 import { UI } from "../../header";
-const { uiheader, uiclick } = UI._uidecorator;
+const { uiheader } = UI._uidecorator;
 
 @uiheader("Basics", "Header2")
 export class Header2 extends UI.Header {
@@ -13,7 +13,7 @@ export class Header2 extends UI.Header {
         this.adapterType = UI.AdapterType.Bang;
     }
 
-    protected onShow(userdata: { title: string }): void {
+    protected onShow(_userdata: { title: string }): void {
 
     }
 }

@@ -5,13 +5,14 @@
  */
 
 import { Color, Sprite } from "cc";
+
 import { ecs } from "../../../header";
 import { CollideQuery } from "../../component/basics/CollideQuery";
 import { QTShape } from "../../component/basics/QTShape";
 import { Render } from "../../component/basics/Render";
 import { QuadTree } from "../../component/singleton/QuadTree";
 import { ECSHelper } from "../../ECSHelper";
-const { ecsystem, ecsprop } = ecs._ecsdecorator;
+const { ecsystem } = ecs._ecsdecorator;
 
 @ecsystem("CollideQuerySystem", { describe: "碰撞查询系统" })
 export class CollideQuerySystem extends ecs.System {
@@ -19,14 +20,14 @@ export class CollideQuerySystem extends ecs.System {
         this.matcher.allOf(CollideQuery, QTShape, Render);
     }
 
-    public update(dt: number): void {
+    public update(_dt: number): void {
         const query = this.query;
 
-        let tree = ECSHelper.getSingleton(QuadTree);
+        const tree = ECSHelper.getSingleton(QuadTree);
         if (!tree) {
             return;
         }
-        for (const [entity, collideQuery, qtShape, render] of query.iterate3(CollideQuery, QTShape, Render)) {
+        for (const [_entity, collideQuery, qtShape, render] of query.iterate3(CollideQuery, QTShape, Render)) {
             const shapes = tree.quadTree.query(qtShape.shape, 1 << collideQuery.mask);
             if (shapes.length > 0) {
                 render.node.getComponent(Sprite).color = Color.RED;

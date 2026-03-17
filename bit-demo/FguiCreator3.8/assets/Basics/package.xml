@@ -21,7 +21,7 @@
     <component id="ukhni" name="btn_close.xml" path="/btns/" exported="true"/>
     <image id="ukhnj" name="image_button_close.png" path="/btns/"/>
     <component id="gukgk" name="ToastWindow.xml" path="/window/" exported="true"/>
-    <image id="gukgl" name="image_toastbg.png" path="/window/toast/"/>
+    <image id="gukgl" name="image_toastbg.png" path="/window/toast/" scale="9grid" scale9grid="0,14,500,44" duplicatePadding="true"/>
     <component id="gukgm" name="toast.xml" path="/window/toast/"/>
     <image id="gukgn" name="image_black.png" path="/image/" scale="9grid" scale9grid="4,4,2,2"/>
     <component id="fchfo" name="Item1.xml" path="/" exported="true"/>

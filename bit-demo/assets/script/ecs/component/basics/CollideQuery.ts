@@ -5,16 +5,17 @@
  */
 
 import { Enum } from "cc";
+
 import { ecs } from "../../../header";
-import { EntityType } from "../header/EntityType";
+import { EEntityType } from "../header/EntityType";
 const { ecsclass, ecsprop } = ecs._ecsdecorator;
 
 @ecsclass("CollideQuery", { describe: "碰撞查询组件" })
 export class CollideQuery extends ecs.Component {
-    @ecsprop({ type: "enum", format: Enum(EntityType), defaultValue: EntityType.None, displayName: "查询类型" })
-    public mask: EntityType = EntityType.None;
+    @ecsprop({ type: "enum", format: Enum(EEntityType), defaultValue: EEntityType.NONE, displayName: "查询类型" })
+    public mask: EEntityType = EEntityType.NONE;
 
     public reset(): void {
-        this.mask = EntityType.None;
+        this.mask = EEntityType.NONE;
     }
 }

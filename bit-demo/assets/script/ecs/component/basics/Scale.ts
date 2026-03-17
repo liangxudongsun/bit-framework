@@ -1,7 +1,7 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-05-19
- * @Description: 
+ * @Description:
  */
 import { ecs } from "../../../header";
 const { ecsclass, ecsprop } = ecs._ecsdecorator;

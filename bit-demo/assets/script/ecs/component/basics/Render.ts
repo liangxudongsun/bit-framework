@@ -4,13 +4,9 @@
  * @Description: 渲染组件
  */
 import { Node } from "cc";
-import { ecs } from "../../../header";
-const { ecsclass, ecsprop } = ecs._ecsdecorator;
 
-enum RenderType {
-    Sprite = 1,
-    Prefab = 2,
-}
+import { ecs } from "../../../header";
+const { ecsclass } = ecs._ecsdecorator;
 
 @ecsclass("Render", { describe: "渲染组件" })
 export class Render extends ecs.Component {

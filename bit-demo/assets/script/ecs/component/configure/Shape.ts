@@ -5,8 +5,9 @@
  */
 
 import { Enum } from "cc";
+
 import { ecs } from "../../../header";
-import { EntityType } from "../header/EntityType";
+import { EEntityType } from "../header/EntityType";
 const { ecsclass, ecsprop } = ecs._ecsdecorator;
 
 @ecsclass("ShapeCircle", { describe: "圆形组件" })
@@ -14,8 +15,8 @@ export class ShapeCircle extends ecs.Component {
     @ecsprop({ type: "float", defaultValue: 0 })
     public radius: number = 0;
 
-    @ecsprop({ type: "enum", format: Enum(EntityType), defaultValue: EntityType.None, displayName: "形状类型" })
-    public tag: EntityType = EntityType.None;
+    @ecsprop({ type: "enum", format: Enum(EEntityType), defaultValue: EEntityType.NONE, displayName: "形状类型" })
+    public tag: EEntityType = EEntityType.NONE;
 
     @ecsprop({ type: "float", defaultValue: 0, displayName: "x偏移" })
     public offsetX: number = 0;
@@ -27,7 +28,7 @@ export class ShapeCircle extends ecs.Component {
         this.offsetX = 0;
         this.offsetY = 0;
         this.radius = 0;
-        this.tag = EntityType.None;
+        this.tag = EEntityType.NONE;
     }
 }
 
@@ -45,8 +46,8 @@ export class ShapeBox extends ecs.Component {
     @ecsprop({ type: "float", defaultValue: 0 })
     public y: number = 0;
 
-    @ecsprop({ type: "enum", format: Enum(EntityType), defaultValue: EntityType.None, displayName: "形状类型" })
-    public tag: EntityType = EntityType.None;
+    @ecsprop({ type: "enum", format: Enum(EEntityType), defaultValue: EEntityType.NONE, displayName: "形状类型" })
+    public tag: EEntityType = EEntityType.NONE;
 
     @ecsprop({ type: "float", defaultValue: 0, displayName: "x偏移" })
     public offsetX: number = 0;
@@ -61,6 +62,6 @@ export class ShapeBox extends ecs.Component {
         this.y = 0;
         this.offsetX = 0;
         this.offsetY = 0;
-        this.tag = EntityType.None;
+        this.tag = EEntityType.NONE;
     }
 }

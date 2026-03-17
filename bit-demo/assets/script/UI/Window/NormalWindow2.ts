@@ -1,7 +1,7 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-12-29
- * @Description: 
+ * @Description:
  */
 
 import { UI } from "../../header";
@@ -15,7 +15,7 @@ export class NormalWindow2 extends UI.Window {
         // this.bgAlpha = 0;
     }
 
-    protected onShow(userdata?: any): void {
+    protected onShow(_userdata?: unknown): void {
 
     }
 

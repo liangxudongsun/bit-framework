@@ -1,3 +1,10 @@
+/**
+ * @Author: Gongxh
+ * @Date: 2026-03-17
+ * @Description:
+ */
+
+// eslint-disable-next-line @typescript-eslint/naming-convention, @typescript-eslint/no-unused-vars
 interface Math {
     /**
      * 限制值
@@ -43,27 +50,27 @@ interface Math {
     smooth(num1: number, num2: number, elapsedTime: number, responseTime: number): number;
 }
 
-Math.clampf = function (value: number, min: number, max: number): number {
+Math.clampf = function(value: number, min: number, max: number): number {
     return Math.min(Math.max(value, min), max);
 };
 
-Math.rand = function (min: number, max: number): number {
+Math.rand = function(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1) + min);
 };
 
-Math.randRange = function (min: number, max: number): number {
+Math.randRange = function(min: number, max: number): number {
     return Math.random() * (max - min) + min;
 };
 
-Math.rad = function (angle: number): number {
+Math.rad = function(angle: number): number {
     return (angle * Math.PI) / 180;
 };
 
-Math.deg = function (radian: number): number {
+Math.deg = function(radian: number): number {
     return (radian * 180) / Math.PI;
 };
 
-Math.smooth = function (num1: number, num2: number, elapsedTime: number, responseTime: number): number {
+Math.smooth = function(num1: number, num2: number, elapsedTime: number, responseTime: number): number {
     let out: number = num1;
     if (elapsedTime > 0) {
         out = out + (num2 - num1) * (elapsedTime / (elapsedTime + responseTime));

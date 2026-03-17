@@ -1,11 +1,11 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-05-16
- * @Description: 
+ * @Description:
  */
 import { ecs } from "../../../header";
 import { LifeTime } from "../../component/basics/LifeTime";
-const { ecsystem, ecsprop } = ecs._ecsdecorator;
+const { ecsystem } = ecs._ecsdecorator;
 
 @ecsystem("LifeTimeSystem", { describe: "生命周期系统" })
 export class LifeTimeSystem extends ecs.System {

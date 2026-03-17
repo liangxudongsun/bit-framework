@@ -4,6 +4,7 @@
  * @Description: 这是一个单世界的例子
  */
 import { Node } from "cc";
+
 import { ecs } from "../header";
 import { CollideQuerySystem } from "./system/basics/CollideQuerySystem";
 import { LifeTimeSystem } from "./system/basics/LifeTimeSystem";
@@ -42,27 +43,27 @@ export class ECSHelper {
             return;
         }
         this._node = node;
-        let world = new ecs.World("world", 1 << 13);
+        const world = new ecs.World("world", 1 << 13);
 
-        let defGroup = new ecs.SystemGroup("default");
+        const defGroup = new ecs.SystemGroup("default");
         defGroup
             .addSystem(new ShapeUpdateSystem())
             .addSystem(new MoveSystem())
             .addSystem(new ReboundSystem())
             .addSystem(new LifeTimeSystem())
             .addSystem(new RenderSystem())
-            ;
+        ;
 
-        let generateGroup = new ecs.SystemGroup("generate");
+        const generateGroup = new ecs.SystemGroup("generate");
         generateGroup
             .addSystem(new ShapeGenerate())
             .addSystem(new RenderGenerate())
-            ;
+        ;
 
-        let gapGroup = new ecs.SystemGroup("gap", 1);
-        gapGroup.addSystem(new CollideQuerySystem())
+        const gapGroup = new ecs.SystemGroup("gap", 1);
+        gapGroup.addSystem(new CollideQuerySystem());
 
-        let debugGroup = new ecs.SystemGroup("debug", 30);
+        const debugGroup = new ecs.SystemGroup("debug", 30);
         debugGroup.addSystem(new EntityLogSystem());
 
         world.addSystem(defGroup).addSystem(generateGroup).addSystem(gapGroup).addSystem(debugGroup);

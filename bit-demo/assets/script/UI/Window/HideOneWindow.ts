@@ -1,7 +1,7 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-12-29
- * @Description: 
+ * @Description:
  */
 
 import { UI } from "../../header";
@@ -14,7 +14,7 @@ export class HideOneWindow extends UI.Window {
         this.type = UI.WindowType.HideOne;
     }
 
-    protected onShow(userdata?: any): void {
+    protected onShow(_userdata?: unknown): void {
 
     }
 

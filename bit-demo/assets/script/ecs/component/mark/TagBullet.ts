@@ -5,14 +5,14 @@
  */
 
 import { ecs } from "../../../header";
-import { EntityType } from "../header/EntityType";
+import { EEntityType } from "../header/EntityType";
 const { ecsclass } = ecs._ecsdecorator;
 
 @ecsclass("TagBullet", { describe: "子弹标记组件" })
 export class TagBullet extends ecs.Component {
     /** 获取标记掩码 */
     public getMask(): number {
-        return 1 << EntityType.Bullet;
+        return 1 << EEntityType.BULLET;
     }
 
     public reset(): void {

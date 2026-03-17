@@ -1,7 +1,7 @@
 /**
  * @Author: Gongxh
  * @Date: 2025-12-30
- * @Description: 
+ * @Description:
  */
 import { UI } from "../../header";
 const { uiclass, uiclick } = UI._uidecorator;
@@ -13,7 +13,7 @@ export class CloseOneWindow extends UI.Window {
         this.type = UI.WindowType.CloseOne;
     }
 
-    protected onShow(userdata?: any): void {
+    protected onShow(_userdata?: unknown): void {
 
     }
 

@@ -15,7 +15,7 @@ export class HeaderWindow2 extends UI.Window {
         this.type = UI.WindowType.Normal;
     }
 
-    protected onShow(userdata: { name: string }): void {
+    protected onShow(_userdata: { name: string }): void {
 
     }
 
@@ -34,7 +34,7 @@ export class HeaderWindow2 extends UI.Window {
         this.removeSelf();
     }
 
-    getHeaderInfo<U>(): UI.HeaderInfo<U> {
+    public getHeaderInfo<T>(): UI.HeaderInfo<T> {
         return UI.HeaderInfo.create(Header2, { title: "header2" });
     }
 }
