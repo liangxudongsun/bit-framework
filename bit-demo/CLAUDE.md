@@ -30,7 +30,7 @@
 - 禁止跨模块直接调用，事件通信必须通过 GlobalEvent
 - 禁止 `any` 类型，必须定义明确类型
 - UI 窗口必须继承 Window 基类，使用 @uiclass 装饰器注册
-- 新建任何类型组件前，先参考 bit-templates/ 下的对应模板
+- 新建窗口/组件/系统时，使用对应的 `/create-window`、`/create-component`、`/create-system` 技能
 - 详细命名规范和质量规则 → `.claude/rules/code-style.md`（写 .ts 代码时自动加载）
 
 ## 项目关键路径
@@ -39,7 +39,6 @@
 | `assets/script/` | 游戏脚本代码 |
 | `assets/script/header.ts` | 统一导出：ASSETS, CORE, ecs, FGUI, QT, UI |
 | `assets/script/ecs/` | ECS 组件和系统 |
-| `bit-templates/` | 代码模板（Window/Component/System/Manager） |
 | `FguiCreator3.8/assets/` | FGUI 工程（按包分目录，含 XML 节点定义） |
 | `extensions-config/entity/` | 实体配置 JSON（只读） |
 | `extensions-config/fgui/` | FGUI 插件配置（代码写完后生成，不可用于了解节点结构） |
