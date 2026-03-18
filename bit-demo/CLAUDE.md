@@ -66,3 +66,10 @@
 | `docs/pitfalls/fgui-pitfalls.md` | FGUI 常见坑和反模式 | 写 UI 窗口代码时 |
 | `docs/pitfalls/ecs-pitfalls.md` | ECS 常见坑和反模式 | 写 ECS 组件/系统时 |
 | `docs/architecture/ecs-design.md` | ECS 架构决策记录 | 修改 ECS 架构或添加新系统时 |
+
+
+# 工作流执行标准 (WORKFLOW ENFORCEMENT)
+处理任何中大型需求时，强制遵循以下步骤 (参考 Superpowers 工作流)：
+1. **Plan (计划)**: 输出一个简短的 Markdown 列表，说明你打算修改哪些文件，以及核心思路。
+2. **Wait (等待)**: 询问用户：“这个计划是否符合预期？是否可以开始编写代码？”
+3. **Execute (执行)**: 获得批准后，再输出具体的代码或执行文件修改。
