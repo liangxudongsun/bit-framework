@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "game-knowledge": {
+      "type": "stdio",
+      "command": "node",
+      "args": [
+        ".claude/mcp/src/server.js"
+      ],
+      "env": {}
+    }
+  }
+}
