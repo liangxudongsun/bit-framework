@@ -5,82 +5,64 @@
 - 禁止使用废弃 API：cc.loader、cc.Class、cc.director.getScheduler 旧写法、Action 动作系统
 
 ## 框架模块
-| 需求 | 使用模块 |
-|------|---------|
-| UI 窗口 | bit-ui → Window 基类 + @uiclass 装饰器 |
-| 事件通信 | bit-event → GlobalEvent |
-| 游戏逻辑 | bit-ecs（高性能）或 bit-ec（Cocos 集成）|
-| 资源加载 | bit-assets → AssetLoader / AssetPool |
-| 网络请求 | bit-net → HttpManager / Socket |
-| 定时器 | bit-core → GlobalTimer |
-| 平台检测 | bit-core → Platform |
-| 热更新 | bit-hotupdate → HotUpdateManager |
-| 行为树AI | bit-behaviortree → BehaviorTree |
-| 碰撞检测 | bit-quadtree → QuadTree |
+| 需求 | 使用模块 | 规则文件 |
+|------|---------|---------|
+| UI 窗口 | bit-ui → Window 基类 + @uiclass 装饰器 | `.claude/rules/ui-module.md` |
+| FGUI 工作流 | FairyGUI 节点结构读取和代码生成 | `.claude/rules/fgui-workflow.md` |
+| ECS 工作流 | 组件/系统开发流程 | `.claude/rules/ecs-workflow.md` |
+| 事件通信 | bit-event → GlobalEvent | `.claude/rules/event-module.md` |
+| 定时器/平台 | bit-core → GlobalTimer / Platform / Screen | `.claude/rules/core-module.md` |
+| 资源加载 | bit-assets → AssetLoader / AssetPool | `.claude/rules/assets-module.md` |
+| 网络请求 | bit-net → HttpManager / Socket | `.claude/rules/net-module.md` |
+| 行为树AI | bit-behaviortree → BehaviorTree | `.claude/rules/behaviortree-module.md` |
+| 碰撞检测 | bit-quadtree → QuadTree | `.claude/rules/quadtree-module.md` |
+| 热更新 | bit-hotupdate → HotUpdateManager | — |
+
+## 自动化技能（Skills）
+| 命令 | 用途 | 参数 |
+|------|------|------|
+| `/create-window` | 创建 UI 窗口类 | 窗口名 FGUI包名 [窗口组名] |
+| `/create-component` | 创建 ECS 组件 | 组件名 描述 [分类目录] |
+| `/create-system` | 创建 ECS 系统 | 系统名 描述 [分类目录] |
+| `/project-info` | 查询项目信息 | windows/components/systems/entities/all |
 
 ## 代码规范
 - 禁止跨模块直接调用，事件通信必须通过 GlobalEvent
 - 禁止 `any` 类型，必须定义明确类型
 - UI 窗口必须继承 Window 基类，使用 @uiclass 装饰器注册
 - 新建任何类型组件前，先参考 bit-templates/ 下的对应模板
+- 详细命名规范和质量规则 → `.claude/rules/code-style.md`（写 .ts 代码时自动加载）
 
-## 命名规范
+## 项目关键路径
+| 路径 | 说明 |
+|------|------|
+| `assets/script/` | 游戏脚本代码 |
+| `assets/script/header.ts` | 统一导出：ASSETS, CORE, ecs, FGUI, QT, UI |
+| `assets/script/ecs/` | ECS 组件和系统 |
+| `bit-templates/` | 代码模板（Window/Component/System/Manager） |
+| `FguiCreator3.8/assets/` | FGUI 工程（按包分目录，含 XML 节点定义） |
+| `extensions-config/entity/` | 实体配置 JSON（只读） |
+| `extensions-config/fgui/` | FGUI 插件配置（代码写完后生成，不可用于了解节点结构） |
 
-### 标识符格式
-| 类型 | 格式 | 示例 |
+## 查询 API（MCP 知识库）
+项目内嵌了 MCP 向量知识库（`.claude/mcp/`），基于框架和 Cocos Creator 3.8.8 的 .d.ts 构建，支持中英文语义搜索。
+
+| 工具 | 用途 | 示例 |
 |------|------|------|
-| 类 | PascalCase | `PlayerManager` |
-| 接口 | `I` + PascalCase | `IWindow`、`IPropsConfig` |
-| 类型别名 | `T` + PascalCase | `TCallback`、`TEventData` |
-| 枚举 | PascalCase | `GameState` |
-| 枚举成员 | UPPER_CASE | `GAME_STATE.RUNNING` |
-| 泛型参数 | `T` + PascalCase | `TKey`、`TValue` |
-| 全局常量 | UPPER_CASE 或 camelCase | `MAX_RETRY`、`defaultConfig` |
-| 变量 / 函数 / 方法 | camelCase | `playerCount`、`loadAsset()` |
+| `search_api(query, source?)` | 语义搜索 API | `search_api("延迟执行")` / `search_api("Node", "cocos")` |
+| `get_module(moduleName)` | 查看模块所有类 | `get_module("bit-ui")` / `get_module("cocos")` |
+| `get_class(className)` | 查看类完整定义 | `get_class("Window")` / `get_class("Node")` |
+| `get_method(className, methodName)` | 查看方法签名 | `get_method("Window", "onShow")` |
 
-### 类成员访问修饰符
-- 所有成员必须**显式声明** `public` / `protected` / `private`（构造函数除外，不加 `public`）
-- 私有属性：必须加 `_` 前缀，如 `private _count: number`
-- 私有方法：**不加** `_` 前缀，如 `private doUpdate(): void`
-- public / protected 属性：camelCase，`_` 前缀仅用于 `@internal` 标记
+- `source` 参数：`"framework"` / `"cocos"` / `"all"`（默认 all）
+- 遇到不确定的框架或 Cocos API，优先用 MCP 查询而非猜测
+- 索引重建：`cd .claude/mcp && npm run sync`
 
-### 布尔命名
-布尔类型必须以语义前缀开头：`is` / `has` / `should` / `can` / `will` / `need` / `allow` / `enable` / `disable` / `show` / `hide`
+## 踩坑记录与架构决策
+遇到相关场景时主动查阅 docs/ 下的文档：
 
-```typescript
-private _isLoaded: boolean;       // 私有布尔属性
-public isVisible: boolean;        // 公有布尔属性
-const isReady = false;            // 布尔变量
-function canAttack(isAlive: boolean): boolean  // 布尔参数
-```
-
-### 类成员排序
-```
-1. public static 属性
-2. protected static 属性
-3. private static 属性
-4. public 实例属性
-5. protected 实例属性
-6. private 实例属性
-7. public static 方法
-8. protected static 方法
-9. private static 方法
-10. constructor
-11. public 实例方法
-12. protected 实例方法
-13. private 实例方法
-```
-
-## 代码质量规则
-- 函数体不超过 80 行（不含空行和注释）
-- 所有函数必须声明返回类型（简单表达式回调可省略）
-- 禁止 `==`，必须使用 `===`
-- 类成员之间强制空行（连续单行属性声明之间可例外）
-- 未使用的参数/变量以 `_` 开头命名（如 `_event`）
-- import 顺序：内置模块 → 第三方 → 内部模块 → 相对路径，组间空行，同组按字母排序
-
-## 查询 API
-已配置 MCP 知识库，遇到不确定的 API 用以下方式查询：
-- 查模块：get_module("bit-ui")
-- 查类：get_class("Window")
-- 搜索：search_api("延迟执行")
+| 文档 | 内容 | 何时查阅 |
+|------|------|---------|
+| `docs/pitfalls/fgui-pitfalls.md` | FGUI 常见坑和反模式 | 写 UI 窗口代码时 |
+| `docs/pitfalls/ecs-pitfalls.md` | ECS 常见坑和反模式 | 写 ECS 组件/系统时 |
+| `docs/architecture/ecs-design.md` | ECS 架构决策记录 | 修改 ECS 架构或添加新系统时 |

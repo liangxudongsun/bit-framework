@@ -4,7 +4,7 @@
       "type": "stdio",
       "command": "node",
       "args": [
-        "/Users/gongxh/work/kunpo-lib/bit-framework-mcp/src/server.js"
+        ".claude/mcp/src/server.js"
       ],
       "env": {}
     }
