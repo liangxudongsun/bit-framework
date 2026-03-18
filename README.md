@@ -146,64 +146,7 @@ pnpm install
 pnpm build:all
 ```
 
-#### 4. 在 demo 中测试
 
-```bash
-# 使用 Cocos Creator 打开 demo 文件夹
-# demo 项目会自动使用本地构建的库文件
-```
-
-## 🛠️ 开发指南
-
-### 构建项目
-
-```bash
-# 构建所有库项目（不包括 demo）
-pnpm build
-
-# 构建特定项目
-pnpm build:core          # 只构建 bit-core
-pnpm build:ui            # 只构建 bit-ui
-pnpm build:ecs           # 只构建 bit-ecs
-pnpm build:ec            # 只构建 bit-ec
-pnpm build:event         # 只构建 bit-event
-pnpm build:net           # 只构建 bit-net
-pnpm build:assets        # 只构建 bit-assets
-pnpm build:quadtree      # 只构建 bit-quadtree
-pnpm build:behaviortree  # 只构建 bit-behaviortree
-pnpm build:condition     # 只构建 bit-condition
-pnpm build:minigame      # 只构建 bit-minigame
-pnpm build:hotupdate     # 只构建 bit-hotupdate
-
-# 按顺序构建所有模块
-pnpm build:all
-
-# 清理所有构建产物
-pnpm clean
-```
-
-### 开发模式（监听文件变化）
-
-```bash
-# 监听 bit-core 变化并自动构建
-pnpm dev:core
-
-# 监听 bit-ui 变化并自动构建
-pnpm dev:ui
-```
-
-### 在 demo 中测试
-
-由于使用了 pnpm workspace，demo 项目会自动链接到本地的所有库：
-
-```bash
-# 1. 构建所有库
-pnpm build:all
-
-# 2. 在 Cocos Creator 中打开 demo 项目
-# 项目路径: demo/
-# demo 会自动使用本地构建的库文件
-```
 
 完整的开发、构建、发布流程请查看 [COMMANDS.md](./COMMANDS.md)
 
@@ -237,100 +180,13 @@ pnpm publish:ui
 # 3. 确保版本号已更新
 ```
 
-### 完整发版流程
-
-```bash
-# 1. 确保代码是最新的
-git pull origin main
-
-# 2. 升级版本号
-pnpm version:patch  # 或 minor/major
-
-# 3. 构建所有项目
-pnpm build:all
-
-# 4. 提交版本变更
-git add .
-git commit -m "chore: bump version to x.x.x"
-git push
-
-# 5. 发布到 npm
-pnpm publish:core
-pnpm publish:ui
-
-# 6. 创建 Git tag（可选）
-git tag v0.0.5
-git push --tags
-```
-
-## 💡 快速选择指南
-
-### 我应该使用哪些模块？
-
-根据你的需求选择合适的模块组合：
-
-#### 🎯 基础项目（推荐所有项目）
-```bash
-npm install @gongxh/bit-core @gongxh/bit-event
-```
-- `bit-core`: 提供时间、平台、模块等基础功能
-- `bit-event`: 全局事件系统
-
-#### 🎨 UI 开发（使用 FairyGUI）
-```bash
-npm install @gongxh/bit-ui @gongxh/bit-condition
-```
-- `bit-ui`: 窗口管理、装饰器等
-- `bit-condition`: 红点、解锁等条件系统
-
-#### 🎮 游戏架构
-```bash
-# ECS 架构
-npm install @gongxh/bit-ecs
-
-# 或 EC 架构（适配 Cocos Creator）
-npm install @gongxh/bit-ec
-```
-
-#### 🌐 网络功能
-```bash
-npm install @gongxh/bit-net @gongxh/bit-hotupdate
-```
-- `bit-net`: HTTP 和 WebSocket
-- `bit-hotupdate`: 热更新系统
-
-#### 🛠️ 高级功能
-```bash
-# 资源管理
-npm install @gongxh/bit-assets
-
-# AI 行为树
-npm install @gongxh/bit-behaviortree
-
-# 碰撞检测
-npm install @gongxh/bit-quadtree
-
-# 小游戏平台
-npm install @gongxh/bit-minigame
-```
-
-
+### 
 
 ### 演示项目
 
 `demo` 文件夹包含完整的 Cocos Creator 3.8.x 示例项目，展示了各模块的实际使用方法。
 
 ## 🔧 常见问题
-
-### Q: 如何在我的 Cocos Creator 项目中使用？
-
-A: 直接使用 npm 安装需要的模块：
-
-```bash
-npm install @gongxh/bit-core @gongxh/bit-ui
-```
-
-安装后可以直接在代码中导入使用。
 
 ### Q: 模块之间有依赖关系吗？
 
@@ -350,20 +206,6 @@ A: pnpm 相比 npm/yarn 有以下优势：
 - 节省磁盘空间（使用硬链接）
 - 更严格的依赖管理
 - 原生支持 monorepo
-
-### Q: 修改源码后如何测试？
-
-A: 需要重新构建对应模块：
-
-```bash
-# 构建特定模块
-pnpm build:core
-
-# 或构建所有模块
-pnpm build:all
-```
-
-由于使用了 workspace 链接，demo 会立即使用新构建的文件。
 
 ### Q: 支持哪些 Cocos Creator 版本？
 
@@ -394,10 +236,6 @@ A: 欢迎贡献！请按以下步骤：
 - [FairyGUI 文档](https://www.fairygui.com/docs/editor)
 - [TypeScript 文档](https://www.typescriptlang.org/zh/)
 
-## 📝 更新日志
-
-各模块的更新日志请查看对应模块的 `CHANGELOG.md` 文件。
-
 ## 📄 许可证
 
 MIT License - 详见 [LICENSE](LICENSE) 文件
@@ -411,16 +249,4 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 ## 🌟 支持项目
 
 如果这个项目对你有帮助，请给个 Star ⭐️
-
-## 📮 反馈与建议
-
-- 提交 [Issue](https://github.com/gongxh0901/bit-framework/issues)
-- 发送邮件到 gong.xinhai@163.com
-
----
-
-**💡 提示**: 
-- 首次使用？建议先阅读 [架构设计文档](./ARCHITECTURE.md) 了解整体设计
-- 想要参与开发？查看 [构建指南](./COMMANDS.md) 了解开发流程
-- 需要示例？打开 `demo` 文件夹查看完整的使用示例
 
