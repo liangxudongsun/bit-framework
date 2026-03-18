@@ -52,11 +52,14 @@ export abstract class Shape implements IShape, IRecyclable {
      */
     protected _rotation: number;
 
-    /** 
-     * 是否有效 下次更新时删除 
-     * @internal 
+    /**
+     * 是否有效 下次更新时删除
+     * @internal
      */
     private _valid: boolean = true;
+
+    /** 自定义数据，可用于存储实体 ID 等外部关联数据 */
+    public data: unknown = null;
 
     public abstract get shapeType(): ShapeType;
 
@@ -143,6 +146,7 @@ export abstract class Shape implements IShape, IRecyclable {
 
         // 调用子类特定的重置逻辑
         this.onReset();
+        this.data = null;
     }
 
     /**

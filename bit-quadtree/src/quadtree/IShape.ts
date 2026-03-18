@@ -35,6 +35,9 @@ export interface IShape {
     clearPositionDirty(): void;
     destroy(): void;
 
+    /** 自定义数据，可用于存储实体 ID 等外部关联数据 */
+    data: unknown;
+
     // 对象池相关方法
     /** 重置对象状态以供重用 */
     reset(): void;
