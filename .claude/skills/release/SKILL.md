@@ -5,7 +5,7 @@ description: Use when publishing a new version of bit-framework to npm. Handles 
 
 # Release
 
-执行 bit-framework 完整发版流程：升级版本号 → 构建所有模块 → 提交代码 → 发布到 npm → 打 git tag。
+执行 bit-framework 完整发版流程：升级版本号 → 生成 CHANGELOG → 构建 → 提交 → 发布 npm → 打 tag。
 
 ## 用法
 
@@ -37,21 +37,27 @@ git log --oneline -5
 
 ### 第三步：从 package.json 获取当前版本
 
-```bash
-cat package.json | grep '"version"' | head -1
-```
+读取根目录 `package.json` 的 `version` 字段，告知用户当前版本和即将升级到的版本，请求确认。
 
-告知用户当前版本和即将升级到的版本，请求确认。
+### 第四步：升级所有模块版本号
 
-### 第四步：升级版本号
+使用 pnpm workspace 命令升级所有子模块版本号：
 
 ```bash
 pnpm version:{type}
 ```
 
-例如 `pnpm version:patch`
+例如 `pnpm version:patch`。该命令会升级所有子模块（排除 bit-creator）的版本号。
 
-### 第五步：构建所有模块
+**然后必须同步升级根 `package.json` 的版本号**，使其与子模块版本一致。直接编辑根 `package.json` 中的 `"version"` 字段为新版本号。
+
+### 第五步：生成 CHANGELOG
+
+**调用 changelog 技能**生成本次发版的 CHANGELOG 条目。
+
+注意：changelog 技能会从 `package.json` 读取版本号，此时版本号已在第四步更新，所以 CHANGELOG 条目会使用新版本号。
+
+### 第六步：构建所有模块
 
 ```bash
 pnpm build:all
@@ -59,17 +65,19 @@ pnpm build:all
 
 如果构建失败，停止流程并报告错误。
 
-### 第六步：获取新版本号并提交
+### 第七步：提交代码
+
+版本号和 CHANGELOG 都已修改完成，现在统一提交：
 
 ```bash
-NEW_VERSION=$(cat package.json | grep '"version"' | head -1 | sed 's/.*"version": "\(.*\)".*/\1/')
-
 git add .
-git commit -m "chore: bump version to $NEW_VERSION"
+git commit -m "chore: release v{NEW_VERSION}"
 git push
 ```
 
-### 第七步：发布到 npm
+`{NEW_VERSION}` 替换为实际的新版本号。
+
+### 第八步：发布到 npm
 
 确认已登录 npm：
 ```bash
@@ -92,12 +100,14 @@ pnpm publish:minigame
 pnpm publish:hotupdate
 ```
 
-### 第八步：打 git tag
+### 第九步：打 git tag
 
 ```bash
-git tag v$NEW_VERSION
+git tag v{NEW_VERSION}
 git push --tags
 ```
+
+`{NEW_VERSION}` 替换为实际的新版本号。
 
 ### 完成
 

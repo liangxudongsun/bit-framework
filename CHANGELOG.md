@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.0.10] - 2026-03-19
+
+### Added
+- feature: ECS 组件属性自动转换为 Cocos Creator 对象 (6557532)
+
 ## [0.0.9] - 2026-03-18
 
 ### Added
@@ -14,7 +19,3 @@
 ### Documentation
 - docs: 重构文档结构，迁移至 docs/ 目录并添加 AI skills (d2fb46b)
 - docs: 添加工作流执行标准规范 (f6fe2c1)
-
-### Chore
-- chore: 添加 Cursor MCP 服务器配置 (4b822d7)
-- 配置 mcp (e2c9dfe)
