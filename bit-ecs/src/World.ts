@@ -4,6 +4,7 @@
  * @Description: 
  */
 
+import { Color, Size, Vec2, Vec3 } from "cc";
 import { CommandPool } from "./command/CommandPool";
 import { Component } from "./component/Component";
 import { ComponentPool } from "./component/ComponentPool";
@@ -160,10 +161,63 @@ export class World {
         let result = {} as Record<string, Component>;
         for (const { name, props } of infos) {
             const comp = _ecsdecorator.getComponentCtor(name);
-            const component = this.addComponent(entity, comp, (customInfo && customInfo[name]) ? Object.assign({}, props, customInfo[name]) : props);
+            const mergedProps = (customInfo && customInfo[name]) ? Object.assign({}, props, customInfo[name]) : props;
+            const convertedProps = this.convertProps(name, mergedProps);
+            const component = this.addComponent(entity, comp, convertedProps);
             result[name] = component;
         }
         return result;
+    }
+
+    /** 
+     * 将 JSON 配置中的原始数据转换为 Cocos Creator 对象
+     * @internal
+     */
+    private convertProps(componentName: string, props: Record<string, any>): Record<string, any> {
+        const meta = _ecsdecorator.getComponentPropMeta(componentName);
+        if (!meta) return props;
+
+        const converted: Record<string, any> = {};
+        for (const key in props) {
+            const propInfo = meta[key];
+            if (propInfo) {
+                converted[key] = this.convertValue(propInfo.type, props[key]);
+            } else {
+                converted[key] = props[key];
+            }
+        }
+        return converted;
+    }
+
+    /** 
+     * 根据属性类型转换单个值
+     * @internal
+     */
+    private convertValue(type: string, value: any): any {
+        switch (type) {
+            case "color":
+                if (Array.isArray(value)) {
+                    return new Color(value[0], value[1], value[2], value[3]);
+                }
+                return value;
+            case "vec2":
+                if (value && !(value instanceof Vec2)) {
+                    return new Vec2(value.x, value.y);
+                }
+                return value;
+            case "vec3":
+                if (value && !(value instanceof Vec3)) {
+                    return new Vec3(value.x, value.y, value.z);
+                }
+                return value;
+            case "size":
+                if (value && !(value instanceof Size)) {
+                    return new Size(value.width, value.height);
+                }
+                return value;
+            default:
+                return value;
+        }
     }
 
     /** 

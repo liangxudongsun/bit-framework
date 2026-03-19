@@ -128,6 +128,14 @@ export namespace _ecsdecorator {
         return nameToCtor.get(name);
     }
 
+    /** 通过组件名获取组件属性元数据 */
+    export function getComponentPropMeta(name: string): Record<string, ECPropInfo> | undefined {
+        const ctor = nameToCtor.get(name);
+        if (!ctor) return undefined;
+        const info = eclassMap.get(ctor);
+        return info?.props;
+    }
+
     /** 通过系统构造函数获取名字 */
     export function getSystemName(ctor: any): string {
         return ecsystemMap.get(ctor);
