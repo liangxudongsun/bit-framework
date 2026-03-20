@@ -1,6 +1,6 @@
 # Bit Framework — AI 开发指令
 
-> 基于 Cocos Creator 3.x 的游戏框架 Monorepo，12 个独立 TypeScript 模块，pnpm workspace 管理，Rollup 构建。
+> 基于 Cocos Creator 3.x 的游戏框架 Monorepo，11 个独立 TypeScript 模块，pnpm workspace 管理，Rollup 构建。
 
 ## 目录结构
 
@@ -18,7 +18,6 @@ bit-framework/
 ├── bit-condition/    # UI 条件显示（红点）
 ├── bit-minigame/     # 小游戏平台适配
 ├── bit-hotupdate/    # 热更新系统
-├── bit-demo/         # Cocos Creator 示例项目
 ├── docs/             # 架构和命令文档
 └── rollup.config.base.mjs  # 所有模块共用的构建配置
 ```
@@ -83,7 +82,6 @@ bit-framework/
 # 2. 构建验证
 pnpm build:core          # 构建单模块
 
-# 3. 在 bit-demo 中测试（Cocos Creator 打开 bit-demo/）
 pnpm build:all           # 构建所有模块
 
 # 4. 提交

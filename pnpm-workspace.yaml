@@ -15,6 +15,4 @@ packages:
   - 'bit-condition'
   - 'bit-minigame'
   - 'bit-hotupdate'
-  # 演示项目
-  - 'bit-demo'
 

@@ -2,7 +2,7 @@
 
 ## 架构总览
 
-基于 **pnpm Monorepo** 的游戏框架集合，专为 Cocos Creator 3.x 设计。12 个独立模块，统一仓库管理，独立发布。
+基于 **pnpm Monorepo** 的游戏框架集合，专为 Cocos Creator 3.x 设计。11 个独立模块，统一仓库管理，独立发布。
 
 ```
 bit-framework/
@@ -17,8 +17,7 @@ bit-framework/
 ├── bit-behaviortree/ # AI 行为树
 ├── bit-condition/    # UI 条件显示（红点）
 ├── bit-minigame/     # 小游戏平台适配
-├── bit-hotupdate/    # 热更新系统
-└── bit-demo/         # Cocos Creator 示例项目
+└── bit-hotupdate/    # 热更新系统
 ```
 
 ## 模块依赖关系
