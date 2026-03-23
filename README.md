@@ -250,3 +250,6 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 
 如果这个项目对你有帮助，请给个 Star ⭐️
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=gongxh0901/bit-framework&type=Date)](https://star-history.com/#gongxh0901/bit-framework&Date)
