@@ -252,4 +252,4 @@ MIT License - 详见 [LICENSE](LICENSE) 文件
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=gongxh0901/bit-framework&type=Date)](https://star-history.com/#gongxh0901/bit-framework&Date)
+[![Star History Chart](https://api.star-history.com/image?repos=gongxh0901/bit-framework&type=date&legend=top-left)](https://www.star-history.com/?repos=gongxh0901%2Fbit-framework&type=date&legend=bottom-right)
