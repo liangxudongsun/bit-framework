@@ -68,6 +68,12 @@ export class World {
         // 初始化根系统
         this.rootSystem = new SystemGroup("RootSystem");
         this.rootSystem.world = this;
+
+        // 世界名不能重复
+        const worlds = World.getWorldMap();
+        if (worlds.has(name)) {
+            throw new Error(`World名称 "${name}" 已存在，不允许重名`);
+        }
     }
 
     /**
@@ -96,6 +102,9 @@ export class World {
 
         // 系统初始化
         this.rootSystem._initialize();
+
+        // 注册到全局世界列表，供调试工具使用
+        World.getWorldMap().set(this.name, this);
     }
 
     /** 
@@ -296,5 +305,17 @@ export class World {
         this.commandPool.clear();
         this.queryPool.clear();
         this.rootSystem.clear();
+
+        // 从全局世界列表中移除
+        World.getWorldMap().delete(this.name);
+    }
+
+    /** 获取全局世界列表 Map */
+    private static getWorldMap(): Map<string, World> {
+        let _g: any = globalThis || window;
+        if (!_g["__ecsWorlds"]) {
+            _g["__ecsWorlds"] = new Map<string, World>();
+        }
+        return _g["__ecsWorlds"];
     }
 }
