@@ -98,7 +98,9 @@ export class SystemGroup implements ISystem {
         if (this.frameCount % this.frameInterval === 0) {
             let len = this.systems.length;
             for (let i = 0; i < len; i++) {
-                this.systems[i].update(this.frameTime);
+                if (this.systems[i].isEnabled()) {
+                    this.systems[i].update(this.frameTime);
+                }
             }
             this.frameTime = 0;
             this.frameCount = 1;
