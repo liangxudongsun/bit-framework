@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.0.11] - 2026-03-24
+
+### Added
+- feature: 添加World名称唯一性校验和全局注册机制 (6a59e01)
+
+### Documentation
+- docs: 更新 Star History 图表链接 (bc959a6)
+- docs: 在 README 添加 Star History 图表 (93b0f8b)
+- docs: 更新发版技能防护规则，移除 bit-demo 引用 (7329827)
+
+### Chore
+- chore: 修复发版流程并补充 CHANGELOG (67539a6)
+
+### Changed
+- demo从Monorepo中移除 (b4a8c1b)
+
 ## [0.0.10] - 2026-03-19
 
 ### Added
